@@ -11,6 +11,7 @@ import { EventEmitter } from "events";
 import { BullModule } from "@nestjs/bull";
 import { StatisticModule } from "./statistic/statistic.module";
 import constants from "./util/constants";
+import { HealthController } from "./health.controller";
 
 @Module({
   imports: [
@@ -34,7 +35,7 @@ import constants from "./util/constants";
       }
     })
   ],
-  controllers: [],
+  controllers: [HealthController],
   providers: [AppService, AppUpdate]
 })
 export class AppModule {}
