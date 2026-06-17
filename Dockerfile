@@ -17,5 +17,11 @@ COPY ./prisma ./prisma/
 COPY ./start_bot.sh .
 
 # migrate database
-RUN apk add sqlite
+RUN apk add sqlite curl
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+  CMD curl -f http://localhost:3000/ || exit 1
+
 ENTRYPOINT ["./start_bot.sh"]
